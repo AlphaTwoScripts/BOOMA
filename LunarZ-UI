@@ -198,7 +198,7 @@ function MacLib:Window(Settings)
 	uIPadding.Parent = controls
 
 	local windowControlSettings = {
-		sizes = { enabled = UDim2.fromOffset(8, 8), disabled = UDim2.fromOffset(7, 7) },
+		sizes = { enabled = UDim2.fromOffset(24, 24), disabled = UDim2.fromOffset(20, 20) },
 		transparencies = { enabled = 0, disabled = 1 },
 		strokeTransparency = 0.9,
 	}
@@ -307,47 +307,20 @@ function MacLib:Window(Settings)
 	
 	discord.Parent = controls
 	
-	-- Create Discord button
-	local discord = Instance.new("ImageButton")
-	discord.Name = "Discord"
-	discord.Image = ""
-	discord.AutoButtonColor = false
-	discord.BackgroundColor3 = Color3.fromRGB(114, 137, 218) -- Discord color
-	discord.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	discord.BorderSizePixel = 0
-	discord.LayoutOrder = 3
-	discord.Size = UDim2.fromOffset(24, 24)
-
-	local uICorner3 = Instance.new("UICorner")
-	uICorner3.Name = "UICorner"
-	uICorner3.CornerRadius = UDim.new(0.5, 0)
-	uICorner3.Parent = discord
-	
-	-- Create the icon for the discord button
-	local discordIcon = Instance.new("ImageLabel")
-	discordIcon.Name = "Icon"
-	discordIcon.Size = UDim2.new(0.7, 0, 0.7, 0)
-	discordIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
-	discordIcon.AnchorPoint = Vector2.new(0.5, 0.5)
-	discordIcon.BackgroundTransparency = 1
-	discordIcon.Image = assets.discordIcon
-	discordIcon.Parent = discord
-	
 	discord.Parent = controls
 
 	-- Add Discord button click handler
 	discord.MouseButton1Click:Connect(function()
-		-- Open Discord link when clicked
-		if Settings.DiscordLink then
-			pcall(function()
-				setclipboard(Settings.DiscordLink)
-				MacLib:Notify({
-					Title = "Discord Link",
-					Content = "Discord link copied to clipboard!",
-					Duration = 3
-				})
-			end)
-		end
+		-- Copy server link when clicked
+		local serverLink = Settings.DiscordLink or "https://discord.gg/YOUR_SERVER_LINK"
+		pcall(function()
+			setclipboard(serverLink)
+			MacLib:Notify({
+				Title = "Discord Server",
+				Content = "Discord server link copied to clipboard!",
+				Duration = 3
+			})
+		end)
 	end)
 
 	maximize.Parent = controls
