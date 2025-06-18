@@ -312,7 +312,7 @@ function MacLib:Window(Settings)
 	-- Add Discord button click handler
 	discord.MouseButton1Click:Connect(function()
 		-- Copy server link when clicked
-		local serverLink = Settings.DiscordLink or "https://discord.gg/YOUR_SERVER_LINK"
+		local serverLink = Settings.DiscordLink or "https://discord.gg/AZwA92q6Zr"
 		pcall(function()
 			setclipboard(serverLink)
 			-- Use Window:Notify instead of MacLib:Notify
